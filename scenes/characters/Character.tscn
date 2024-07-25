@@ -1,0 +1,196 @@
+[gd_scene load_steps=18 format=3 uid="uid://chui0or786qh6"]
+
+[ext_resource type="Script" path="res://scripts/char/Character.gd" id="1_jhxyj"]
+[ext_resource type="Texture2D" uid="uid://c4c4gyx7xum3d" path="res://sprites/characters/Virtual Guy/Idle (32x32).png" id="1_x55pt"]
+[ext_resource type="Resource" path="res://resources/DefaultMovementData.tres" id="2_lio7w"]
+[ext_resource type="Texture2D" uid="uid://bnxcp7ekgr63b" path="res://sprites/characters/Virtual Guy/Jump (32x32).png" id="2_nhtij"]
+[ext_resource type="Resource" uid="uid://dc4hun4j3c6xf" path="res://resources/AnimationNames.tres" id="3_h32q0"]
+[ext_resource type="Texture2D" uid="uid://d067fv1cbo84y" path="res://sprites/characters/Virtual Guy/Run (32x32).png" id="3_ymqma"]
+[ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="7_ygkkq"]
+[ext_resource type="Script" path="res://scripts/states/char/GroundState.gd" id="8_rm5c3"]
+[ext_resource type="Script" path="res://scripts/states/char/AirState.gd" id="9_6dyte"]
+[ext_resource type="Script" path="res://scripts/states/char/WallState.gd" id="10_d8acs"]
+
+[sub_resource type="Animation" id="Animation_drgpf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o0to3"]
+resource_name = "idle"
+length = 1.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_x55pt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_rhe51"]
+resource_name = "jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nhtij")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_48qxa"]
+resource_name = "walk"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ymqma")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_3bl0e"]
+resource_name = "double_jump"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hadwm"]
+_data = {
+"RESET": SubResource("Animation_drgpf"),
+"double_jump": SubResource("Animation_3bl0e"),
+"idle": SubResource("Animation_o0to3"),
+"jump": SubResource("Animation_rhe51"),
+"walk": SubResource("Animation_48qxa")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5ws1"]
+height = 26.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_jhxyj")
+movement_data = ExtResource("2_lio7w")
+animations = ExtResource("3_h32q0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("3_ymqma")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hadwm")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_l5ws1")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_player")]
+script = ExtResource("7_ygkkq")
+character = NodePath("..")
+current_state = NodePath("GroundState")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="GroundState" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("8_rm5c3")
+
+[node name="AirState" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("9_6dyte")
+
+[node name="WallState" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_d8acs")

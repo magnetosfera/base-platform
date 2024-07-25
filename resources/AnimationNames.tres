@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AnimationNames" load_steps=2 format=3 uid="uid://dc4hun4j3c6xf"]
+
+[ext_resource type="Script" path="res://resources/AnimationNames.gd" id="1_3gq0k"]
+
+[resource]
+script = ExtResource("1_3gq0k")
+jump = "jump"
+idle = "idle"
+fall = "fall"
+run = "walk"
+double_jump = "double_jump"
+wall_jump = "wall_jump"
